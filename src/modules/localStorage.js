@@ -1,10 +1,10 @@
 class Storage {
   static getToDo() {
     let todoL;
-    if (!localStorage.getItem("todoL")) {
+    if (!localStorage.getItem('todoL')) {
       todoL = [];
     } else {
-      todoL = JSON.parse(localStorage.getItem("todoL"));
+      todoL = JSON.parse(localStorage.getItem('todoL'));
     }
     return todoL;
   }
@@ -14,7 +14,7 @@ class Storage {
 
     todoL.push(todo);
 
-    localStorage.setItem("todoL", JSON.stringify(todoL));
+    localStorage.setItem('todoL', JSON.stringify(todoL));
   }
 
   static remove(id) {
@@ -25,7 +25,7 @@ class Storage {
         todoL.splice(i, 1);
       }
     });
-    localStorage.setItem("todoL", JSON.stringify(todoL));
+    localStorage.setItem('todoL', JSON.stringify(todoL));
     Storage.resetId();
   }
 
@@ -36,7 +36,7 @@ class Storage {
     todoL.forEach((item) => {
       const newId = { ...item, id: arr.length + 1 };
       arr.push(newId);
-      localStorage.setItem("todoL", JSON.stringify(arr));
+      localStorage.setItem('todoL', JSON.stringify(arr));
     });
   }
 
@@ -52,7 +52,7 @@ class Storage {
           x.completed = false;
         }
       }
-      localStorage.setItem("todoL", JSON.stringify(todoL));
+      localStorage.setItem('todoL', JSON.stringify(todoL));
     });
     return todoL;
   }
@@ -61,7 +61,7 @@ class Storage {
     const todoL = Storage.getToDo();
 
     const notCompleted = todoL.filter((x) => x.completed === false);
-    localStorage.setItem("todoL", JSON.stringify(notCompleted));
+    localStorage.setItem('todoL', JSON.stringify(notCompleted));
     Storage.resetId();
     window.location.reload();
   }
@@ -70,7 +70,7 @@ class Storage {
     const todoL = Storage.getToDo();
 
     const notCompleted = todoL.filter((x) => x.completed === false);
-    localStorage.setItem("todoL", JSON.stringify(notCompleted));
+    localStorage.setItem('todoL', JSON.stringify(notCompleted));
     Storage.resetId();
     // window.location.reload();
   }
@@ -82,7 +82,7 @@ class Storage {
     todoL.forEach((item) => {
       if (item.id !== id) {
         arr.push(item);
-        localStorage.setItem("todoL", JSON.stringify(arr));
+        localStorage.setItem('todoL', JSON.stringify(arr));
       }
     });
   }
@@ -93,31 +93,30 @@ class Storage {
   }
 
   static editInput(id, e, tdHide, editPara) {
-    if (e.children[0].classList.contains("kebabImg")) {
+    if (e.children[0].classList.contains('kebabImg')) {
       const todoL = Storage.getToDo();
       id = Number(id);
       todoL.forEach((todo) => {
         if (id === todo.id) {
           const editItem = todo.description;
 
-          const edit = document.getElementsByName("edit")[0];
+          const edit = document.getElementsByName('edit')[0];
 
           if (edit) {
             edit.remove();
           }
 
-          const input = document.createElement("input");
-          input.type = "text";
-          input.name = "edit";
+          const input = document.createElement('input');
+          input.type = 'text';
+          input.name = 'edit';
           input.value = editItem;
-          input.classList.add("edit");
+          input.classList.add('edit');
 
-          input.addEventListener("change", () => {
+          input.addEventListener('change', () => {
             editPara.textContent = input.value;
             todo.description = input.value;
-            localStorage.setItem("todoL", JSON.stringify(todoL));
-          window.location.reload();
-
+            localStorage.setItem('todoL', JSON.stringify(todoL));
+            window.location.reload();
           });
 
           tdHide.appendChild(input);
