@@ -1,21 +1,50 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <script src="https://kit.fontawesome.com/9c25278351.js"crossorigin="anonymous"></script>
-  <title><%= htmlWebpackPlugin.options.title %></title>
-</head>
-<body>
-  <header>
-  <h1><%= htmlWebpackPlugin.options.title %></h1>
-  </header>
-  <section>
-  <ul class="todo-list">
-    <li>Today's TO DO<img style ="width:20px;height:20px" src=<%= require("./assets/Refresh_icon.png") %> /></li>
-    <li class='list-item'><input class='item-input' id="desc-input" placeholder='Add to your list ...'/><img style ="width:20px;height:20px" src=<%= require("./assets/return.svg") %> /></li>
-  </ul>
-</section>
-</body>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title><%= htmlWebpackPlugin.options.title %></title>
+  </head>
+  <body>
+    <main>
+      <div><h2>Instructions to use the App:</h2>
+      <ol><li>To add new task to your TO DO LIST Type the text in text box then click on <img style ="width:20px;height:20px" src=<%= require("./assets/return.svg") %> /></li>
+    <li>To Edit TO DO Task click on this icon <img style ="width:20px;height:20px" src=<%= require("./assets/kebab.svg") %> /></li></ol></div>
+      <div class="container">
+        <div><h1 style="text-align: center;">Let's Organize your Day :)</h1></div>
+        <div class="input-container">
+          <hr style="margin: 20px;">
+          <p class="mainH" style="text-align: center;">Today's Tasks</p>
+          <div>
+            <form action="#">
+              <input
+                id="todo-input"
+                type="text"
+                placeholder="Add to your list"
+                required
+              />
+              <button type="submit" id="addBtn">
+                <img
+                  class="returnImg"
+                  id="returnImg"
+                  src="./assets/return.svg"
+                  alt="returnImg"
+                />
+              </button>
+            </form>
+          </div>
+
+          <div class="to-do-list" id="to-do-container">
+            <table>
+              <thead></thead>
+              <tbody class="tbody" id="tbody"></tbody>
+            </table>
+            <button type="button" id="completedBtn" class="completedBtn">
+              Clear all completed.
+            </button>
+          </div>
+        </div>
+      </div>
+    </main>
+  </body>
 </html>
